@@ -1,0 +1,28 @@
+.Header {
+    color: #fafd7cff;
+    background-color: #24325fff;
+    font-size: 1.5em;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Header a {
+    color: #fafd7cff;
+    text-decoration: none;
+}
+
+
+.Header ul {
+    display: flex;
+    list-style: none;
+}
+
+.Header ul li {
+    margin-right: 1em;
+}
+
+.Header ul li:hover {
+    border-bottom: 1px solid #fafd7cff;
+}
