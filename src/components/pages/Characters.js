@@ -1,18 +1,23 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import { fetchCharacters } from '../../actions/characterActions';
+import {fetchCharacters} from '../../actions/characterActions';
+import './Characters.css'
 
 function Characters(props) {
 
   useEffect(() => {
-    props.fetchData("https://rickandmortyapi.com/api/character")
+    props.fetchData('https://rickandmortyapi.com/api/character')
   }, [])
 
   return (
-    <div>
+    <div className='Characters'>
       <ul>
-        {props.characters.map(character => {
-          return <li key={character.key}>{character.name}</li>
+        {props.characters.characters.map(character => {
+          return (
+            <li key={character.id}>
+              <img src={character.image}/>
+              <span>{character.name}</span>
+            </li>)
         })}
       </ul>
     </div>

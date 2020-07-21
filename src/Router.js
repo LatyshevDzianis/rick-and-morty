@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch} from 'react-router-dom'
 
 function Router(props) {
   return (

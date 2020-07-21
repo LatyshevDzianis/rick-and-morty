@@ -1,9 +1,9 @@
 import {createStore, applyMiddleware} from 'redux'
-import characterReducer from './reducer/characterReducer'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+import rootReducer from './reducer';
 
 export const store = createStore(
-  characterReducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 )
