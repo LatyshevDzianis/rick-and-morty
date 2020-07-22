@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useSelector, connect } from "react-redux";
+import { connect } from "react-redux";
 import {
   fetchCharacterEpisodes,
   fetchCharacters,
 } from "../../actions/characterActions";
 import "./CharacterDetails.css";
+import { Link } from "react-router-dom";
 
 function CharacterDetails(/*{ match },*/ props) {
   let idList = [];

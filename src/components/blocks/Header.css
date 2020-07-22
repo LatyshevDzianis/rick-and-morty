@@ -13,6 +13,10 @@
     text-decoration: none;
 }
 
+.Header a.active {
+    border-bottom: 1px solid #fafd7cff;
+}
+
 
 .Header ul {
     display: flex;

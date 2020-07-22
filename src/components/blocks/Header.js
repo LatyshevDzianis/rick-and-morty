@@ -1,8 +1,8 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
   return (
     <div className="Header">
       <div className="Logo">
@@ -12,13 +12,13 @@ export default function Header() {
       </div>
       <ul>
         <li>
-          <Link to="/episodes">Episodes</Link>
+          <NavLink to="/episodes">Episodes</NavLink>
         </li>
         <li>
-          <Link to="/locations">Locations</Link>
+          <NavLink to="/locations">Locations</NavLink>
         </li>
         <li>
-          <Link to="/characters">Characters</Link>
+          <NavLink to="/characters">Characters</NavLink>
         </li>
       </ul>
     </div>

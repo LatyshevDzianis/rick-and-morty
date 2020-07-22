@@ -29,8 +29,10 @@ function Characters(props) {
           return (
             <li key={character.id}>
               <Link to={`/characters/${character.id}`}>
-                <img src={character.image} />
-                <span>{character.name}</span>
+                <div>
+                  <img src={character.image} />
+                  <span>{character.name}</span>
+                </div>
               </Link>
             </li>
           );
