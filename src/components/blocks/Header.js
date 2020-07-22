@@ -1,26 +1,26 @@
-import React from 'react'
-import './Header.css'
-import {Link} from 'react-router-dom'
+import React from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <div className='Header'>
-      <div className='Logo'>
-        <Link to='/'>
+    <div className="Header">
+      <div className="Logo">
+        <Link to="/">
           <span>Rick And Morty</span>
         </Link>
       </div>
       <ul>
         <li>
-          <Link to='/episodes'>Эпизоды</Link>
+          <Link to="/episodes">Episodes</Link>
         </li>
         <li>
-          <Link to='/locations'>Локации</Link>
+          <Link to="/locations">Locations</Link>
         </li>
         <li>
-          <Link to='/characters'>Персонажи</Link>
+          <Link to="/characters">Characters</Link>
         </li>
       </ul>
     </div>
-  )
+  );
 }
