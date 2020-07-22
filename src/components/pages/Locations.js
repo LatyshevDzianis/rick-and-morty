@@ -19,34 +19,25 @@ function Locations(props) {
 
   return (
     <div className="Locations">
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Dimension</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.locations.map((location) => {
-            return (
-              <tr key={location.id}>
-                <td>
-                  <Link to={`/locations/${location.id}`}>{location.name}</Link>
-                </td>
-                <td>
-                  <Link to={`/locations/${location.id}`}>{location.type}</Link>
-                </td>
-                <td>
-                  <Link to={`/locations/${location.id}`}>
-                    {location.dimension}
-                  </Link>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {props.locations.map((item) => {
+        return (
+          <Link key={item.id} to={`/locations/${item.id}`}>
+            <div className="LocationItem">
+              <span>
+                <b>Name:</b> {item.name}
+              </span>
+              <br />
+              <span>
+                <b>Type:</b> {item.type}
+              </span>
+              <br />
+              <span>
+                <b>Dimension:</b> {item.dimension}
+              </span>
+            </div>
+          </Link>
+        );
+      })}
       <Breadcrumbs
         pages={props.info.pages}
         currentPage={props.currentPage}

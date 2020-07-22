@@ -1,28 +1,26 @@
 .Locations {
     width: 75%;
     margin: 15px auto;
-    display: flex;
-    flex-direction: column;
 }
 
-.Locations td {
-    padding: 5px 10px;
-}
-
-.Locations table {
-    border: none;
-    border-collapse: collapse;
-}
-
-.Locations table a {
-    color: #24325fff;
-    font-size: 1.5em;
+.Locations a {
     text-decoration: none;
 }
 
-.Locations tr:hover {
-    transition: .3s;
-    background-color: #24325fff;
-    color: #fafd7cff;;
+.LocationItem {
+    display: flex;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+}
+
+.LocationItem:hover {
+    background-color: #fafd7c;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.LocationItem span {
+    color: #24325fff;
+    font-size: 1.5em;
+    margin-right: 15px;
 }

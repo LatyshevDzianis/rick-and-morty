@@ -10,6 +10,7 @@ import MainPage from "./components/pages/MainPage";
 import Episodes from "./components/pages/Episodes";
 import Locations from "./components/pages/Locations";
 import EpisodeDetails from "./components/pages/EpisodeDetails";
+import LocationDetails from "./components/pages/LocationDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/episodes" exact component={Episodes} />
           <Route path="/episodes/:id" component={EpisodeDetails} />
           <Route path="/locations" exact component={Locations} />
+          <Route path="/locations/:id" component={LocationDetails} />
         </Switch>
       </Provider>
     </BrowserRouter>

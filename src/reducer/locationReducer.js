@@ -1,10 +1,16 @@
 import {
+  FETCH_EPISODES_BEGIN,
+  FETCH_LOCATION_CHARACTERS_FAILURE,
+  FETCH_LOCATION_CHARACTERS_SUCCESS,
+  FETCH_LOCATIONS_BEGIN,
+  FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
   SET_LOCATIONS_CURRENT_PAGE,
 } from "../constants/actionTypes";
 
 const initialState = {
   locations: [],
+  locationCharacters: [],
   loading: false,
   error: null,
   info: {},
@@ -13,6 +19,12 @@ const initialState = {
 
 export default function locationsReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_LOCATIONS_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
     case FETCH_LOCATIONS_SUCCESS:
       return {
         ...state,
@@ -20,6 +32,25 @@ export default function locationsReducer(state = initialState, action) {
         info: action.payload.info,
         loading: false,
         error: null,
+      };
+    case FETCH_LOCATIONS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case FETCH_LOCATION_CHARACTERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        locationCharacters: action.payload,
+        error: null,
+      };
+    case FETCH_LOCATION_CHARACTERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     case SET_LOCATIONS_CURRENT_PAGE:
       return {
