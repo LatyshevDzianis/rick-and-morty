@@ -1,10 +1,16 @@
-import {FETCH_CHARACTERS_BEGIN, FETCH_CHARACTERS_SUCCESS} from '../constants/actionTypes';
+import {
+  FETCH_CHARACTERS_BEGIN,
+  FETCH_CHARACTERS_SUCCESS,
+  SET_CHARACTERS_CURRENT_PAGE,
+} from "../constants/actionTypes";
 
 const initialState = {
   characters: [],
+  info: {},
+  currentPage: 1,
   loading: false,
-  error: null
-}
+  error: null,
+};
 
 export default function characterReducer(state = initialState, action) {
   switch (action.type) {
@@ -12,16 +18,22 @@ export default function characterReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null
-      }
+        error: null,
+      };
     case FETCH_CHARACTERS_SUCCESS:
       return {
         ...state,
-        characters: action.payload,
+        characters: action.payload.results,
+        info: action.payload.info,
         loading: false,
-        error: null
-      }
+        error: null,
+      };
+    case SET_CHARACTERS_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
     default:
-      return state
+      return state;
   }
 }

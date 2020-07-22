@@ -8,6 +8,10 @@
     margin: 15px auto;
 }
 
+.Characters a {
+    text-decoration: none;
+}
+
 .Characters li {
     padding: 5px 10px;
     margin-bottom: 15px;
@@ -20,7 +24,7 @@
     cursor: pointer;
 }
 
-.Characters span {
+.Characters a span {
     font-size: 1.5em;
     color: #24325fff;
     margin-left: 20px;

@@ -1,0 +1,14 @@
+.Breadcrumbs {
+    text-align: center;
+}
+
+.Breadcrumbs span {
+    font-size: 1.5em;
+    color: #24325fff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.Breadcrumbs span.selected {
+    font-weight: bold;
+}

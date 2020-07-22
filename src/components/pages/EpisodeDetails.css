@@ -1,0 +1,9 @@
+.EpisodeDetails {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.EpisodeDetails p {
+    font-size: 1.5em;
+    color: #24325fff;
+}

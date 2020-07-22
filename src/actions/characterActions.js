@@ -1,35 +1,48 @@
-import {FETCH_CHARACTERS_BEGIN, FETCH_CHARACTERS_FAILURE, FETCH_CHARACTERS_SUCCESS} from '../constants/actionTypes';
+import {
+  FETCH_CHARACTERS_BEGIN,
+  FETCH_CHARACTERS_FAILURE,
+  FETCH_CHARACTERS_SUCCESS,
+  SET_CHARACTERS_CURRENT_PAGE,
+} from "../constants/actionTypes";
 
-export const fetchCharactersBegin = () => {
-  return {
-    type: FETCH_CHARACTERS_BEGIN
-  }
-}
+// export const fetchCharactersBegin = () => {
+//   return {
+//     type: FETCH_CHARACTERS_BEGIN,
+//   };
+// };
 
-export const fetchCharactersSuccess = characters => {
+export const fetchCharactersSuccess = (characters) => {
   return {
     type: FETCH_CHARACTERS_SUCCESS,
-    payload: characters
-  }
-}
+    payload: characters,
+  };
+};
 
-export const fetchCharactersFailure = error => {
+export const fetchCharactersFailure = (error) => {
   return {
     type: FETCH_CHARACTERS_FAILURE,
-    payload: error
-  }
-}
+    payload: error,
+  };
+};
 
-export const fetchCharacters = url => {
+export const setCurrentPage = (currentPage) => {
+  return {
+    type: SET_CHARACTERS_CURRENT_PAGE,
+    payload: currentPage,
+  };
+};
+
+export const fetchCharacters = (url) => {
   return (dispatch) => {
     fetch(url)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error(response.statusText)
+          throw new Error(response.statusText);
         }
-        return response
+        return response;
       })
-      .then(response => response.json())
-      .then(characters => dispatch(fetchCharactersSuccess(characters.results)))
-  }
-}
+      .then((response) => response.json())
+      .then((characters) => dispatch(fetchCharactersSuccess(characters)))
+      .catch((error) => dispatch(fetchCharactersFailure(error.message)));
+  };
+};
