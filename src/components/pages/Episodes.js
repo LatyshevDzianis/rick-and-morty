@@ -19,20 +19,6 @@ function Episodes(props) {
     );
   };
 
-  // const breadcrumbs = [];
-  //
-  // for (let i = 1; i <= props.info.pages; i++) {
-  //   breadcrumbs.push(
-  //     <span
-  //       onClick={() => onPageChange(i)}
-  //       className={props.currentPage === i ? "selected" : null}
-  //       key={i}
-  //     >
-  //       {i}
-  //     </span>
-  //   );
-  // }
-
   return (
     <div className="Episodes">
       {props.episodes.episodes.map((item) => {
@@ -59,7 +45,6 @@ function Episodes(props) {
         currentPage={props.currentPage}
         onPageChange={onPageChange}
       />
-      {/*<div className="Breadcrumbs">{breadcrumbs}</div>*/}
     </div>
   );
 }

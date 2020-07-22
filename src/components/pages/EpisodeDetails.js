@@ -1,26 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./EpisodeDetails.css";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { fetchEpisodeCharacters } from "../../actions/episodeActions";
 
-export default function EpisodeDetails(props) {
+function EpisodeDetails(props) {
+  let idList = [];
   const episodeId = props.match.params.id;
-  const episode = useSelector((state) =>
-    state.episodes.episodes.find((item) => item.id == episodeId)
+
+  let episode = props.episodes.find((item) => item.id == episodeId);
+
+  episode.characters.forEach((item) =>
+    idList.push(item.substring(item.lastIndexOf("/") + 1))
   );
 
-  console.log(episode);
+  useEffect(() => {
+    props.fetchEpisodeCharacters(
+      `https://rickandmortyapi.com/api/character/${idList}`
+    );
+  }, []);
 
   return (
     <div className="EpisodeDetails">
+      {console.log(props)}
       <p>
-        <b>Name:</b> {episode.name}
+        <b>Name: </b> {episode.name}
       </p>
       <p>
-        <b>Episode:</b> {episode.episode}
+        <b>Episode: </b> {episode.episode}
       </p>
       <p>
-        <b>Air date:</b> {episode.air_date}
+        <b>Air date: </b> {episode.air_date}
+      </p>
+      <p>
+        <b>Characters: </b>
+        {Array.isArray(props.episodeCharacters) ? (
+          props.episodeCharacters.map((character) => (
+            <span key={character.id}>{character.name}, </span>
+          ))
+        ) : (
+          <span key={props.episodeCharacters.id}>
+            {props.episodeCharacters.name}
+          </span>
+        )}
       </p>
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    episodes: state.episodes.episodes,
+    episodeCharacters: state.episodes.episodeCharacters,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchEpisodeCharacters: (url) => dispatch(fetchEpisodeCharacters(url)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EpisodeDetails);
