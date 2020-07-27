@@ -1,11 +1,15 @@
 .Header {
     color: #fafd7cff;
     background-color: #24325fff;
+    left: 0;
+    right: 0;
+    top: 0;
     font-size: 1.5em;
     height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: fixed;
 }
 
 .Header a {

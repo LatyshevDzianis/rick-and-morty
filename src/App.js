@@ -16,9 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <div>
-          <Header />
-        </div>
+        <Header />
 
         <Switch>
           <Route path="/" exact component={MainPage} />
