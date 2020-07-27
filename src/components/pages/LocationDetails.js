@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "./LocationDetails.css";
 import { connect } from "react-redux";
-import { fetchLocationCharacters } from "../../actions/locationActions";
+import {
+  fetchLocationCharacters,
+  fetchLocationCharactersBegin,
+} from "../../actions/locationActions";
 
 function LocationDetails(props) {
   let idList = [];
@@ -55,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchLocationCharacters: (url) => dispatch(fetchLocationCharacters(url)),
+    fetchLocationCharacters: (url) =>
+      dispatch(fetchLocationCharactersBegin(url)),
   };
 };
 

@@ -1,7 +1,9 @@
 import {
+  FETCH_CHARACTER_EPISODES_BEGIN,
   FETCH_CHARACTER_EPISODES_FAILURE,
   FETCH_CHARACTER_EPISODES_SUCCESS,
   FETCH_CHARACTERS_BEGIN,
+  FETCH_CHARACTERS_FAILURE,
   FETCH_CHARACTERS_SUCCESS,
   SET_CHARACTERS_CURRENT_PAGE,
 } from "../constants/actionTypes";
@@ -9,6 +11,7 @@ import {
 const initialState = {
   characters: [],
   characterEpisodes: [],
+  currentUrl: "",
   info: {},
   currentPage: 1,
   loading: false,
@@ -20,6 +23,7 @@ export default function characterReducer(state = initialState, action) {
     case FETCH_CHARACTERS_BEGIN:
       return {
         ...state,
+        currentUrl: action.payload,
         loading: true,
         error: null,
       };
@@ -30,6 +34,18 @@ export default function characterReducer(state = initialState, action) {
         info: action.payload.info,
         loading: false,
         error: null,
+      };
+    case FETCH_CHARACTERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case FETCH_CHARACTER_EPISODES_BEGIN:
+      return {
+        ...state,
+        currentUrl: action.payload,
+        loading: true,
       };
     case FETCH_CHARACTER_EPISODES_SUCCESS:
       return {

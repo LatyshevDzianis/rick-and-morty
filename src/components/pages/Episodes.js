@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchEpisodes, setCurrentPage } from "../../actions/episodeActions";
+import {
+  fetchEpisodes,
+  fetchEpisodesBegin,
+  setCurrentPage,
+} from "../../actions/episodeActions";
 import { Link } from "react-router-dom";
 import "./Episodes.css";
 import Breadcrumbs from "../blocks/Breadcrumbs";
@@ -59,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => dispatch(fetchEpisodes(url)),
+    fetchData: (url) => dispatch(fetchEpisodesBegin(url)),
     setCurrentPage: (pageNumber) => dispatch(setCurrentPage(pageNumber)),
   };
 };

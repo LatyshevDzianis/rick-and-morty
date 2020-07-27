@@ -1,4 +1,5 @@
 import {
+  FETCH_EPISODE_CHARACTERS_BEGIN,
   FETCH_EPISODE_CHARACTERS_FAILURE,
   FETCH_EPISODE_CHARACTERS_SUCCESS,
   FETCH_EPISODES_BEGIN,
@@ -10,6 +11,7 @@ import {
 const initialState = {
   episodes: [],
   episodeCharacters: [],
+  currentUrl: "",
   loading: false,
   error: null,
   info: {},
@@ -21,6 +23,7 @@ export default function episodeReducer(state = initialState, action) {
     case FETCH_EPISODES_BEGIN:
       return {
         ...state,
+        currentUrl: action.payload,
         loading: true,
         error: null,
       };
@@ -37,6 +40,12 @@ export default function episodeReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case FETCH_EPISODE_CHARACTERS_BEGIN:
+      return {
+        ...state,
+        currentUrl: action.payload,
+        loading: true,
       };
     case FETCH_EPISODE_CHARACTERS_SUCCESS:
       return {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-  fetchCharacters,
+  fetchCharactersBegin,
   setCurrentPage,
 } from "../../actions/characterActions";
 import "./Characters.css";
@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => dispatch(fetchCharacters(url)),
+    fetchData: (url) => dispatch(fetchCharactersBegin(url)),
     setCurrentPage: (pageNumber) => dispatch(setCurrentPage(pageNumber)),
   };
 };

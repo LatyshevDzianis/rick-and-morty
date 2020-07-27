@@ -1,4 +1,5 @@
 import {
+  FETCH_LOCATION_CHARACTERS_BEGIN,
   FETCH_LOCATION_CHARACTERS_FAILURE,
   FETCH_LOCATION_CHARACTERS_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
@@ -7,9 +8,10 @@ import {
   SET_LOCATIONS_CURRENT_PAGE,
 } from "../constants/actionTypes";
 
-export const fetchLocationsBegin = () => {
+export const fetchLocationsBegin = (url) => {
   return {
     type: FETCH_LOCATIONS_BEGIN,
+    payload: url,
   };
 };
 
@@ -24,6 +26,13 @@ export const fetchLocationsFailure = (error) => {
   return {
     type: FETCH_LOCATIONS_FAILURE,
     payload: error,
+  };
+};
+
+export const fetchLocationCharactersBegin = (url) => {
+  return {
+    type: FETCH_LOCATION_CHARACTERS_BEGIN,
+    payload: url,
   };
 };
 
@@ -48,35 +57,35 @@ export const setCurrentPage = (currentPage) => {
   };
 };
 
-export const fetchLocationCharacters = (url) => {
-  return (dispatch) => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response;
-      })
-      .then((response) => response.json())
-      .then((characters) =>
-        dispatch(fetchLocationCharactersSuccess(characters))
-      )
-      .catch((error) => dispatch(fetchLocationCharactersFailure(error)));
-  };
-};
-
-export const fetchLocations = (url) => {
-  return (dispatch) => {
-    dispatch(fetchLocationsBegin());
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response;
-      })
-      .then((response) => response.json())
-      .then((locations) => dispatch(fetchLocationsSuccess(locations)))
-      .catch((error) => dispatch(fetchLocationsFailure(error)));
-  };
-};
+// export const fetchLocationCharacters = (url) => {
+//   return (dispatch) => {
+//     fetch(url)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.statusText);
+//         }
+//         return response;
+//       })
+//       .then((response) => response.json())
+//       .then((characters) =>
+//         dispatch(fetchLocationCharactersSuccess(characters))
+//       )
+//       .catch((error) => dispatch(fetchLocationCharactersFailure(error)));
+//   };
+// };
+//
+// export const fetchLocations = (url) => {
+//   return (dispatch) => {
+//     dispatch(fetchLocationsBegin());
+//     fetch(url)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.statusText);
+//         }
+//         return response;
+//       })
+//       .then((response) => response.json())
+//       .then((locations) => dispatch(fetchLocationsSuccess(locations)))
+//       .catch((error) => dispatch(fetchLocationsFailure(error)));
+//   };
+// };

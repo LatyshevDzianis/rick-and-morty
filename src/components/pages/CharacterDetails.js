@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   fetchCharacterEpisodes,
+  fetchCharacterEpisodesBegin,
   fetchCharacters,
 } from "../../actions/characterActions";
 import "./CharacterDetails.css";
@@ -65,8 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (url) => dispatch(fetchCharacters(url)),
-    fetchCharacterEpisodes: (url) => dispatch(fetchCharacterEpisodes(url)),
+    fetchCharacterEpisodes: (url) => dispatch(fetchCharacterEpisodesBegin(url)),
   };
 };
 

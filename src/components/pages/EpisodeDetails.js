@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "./EpisodeDetails.css";
 import { connect } from "react-redux";
-import { fetchEpisodeCharacters } from "../../actions/episodeActions";
+import {
+  fetchEpisodeCharacters,
+  fetchEpisodeCharactersBegin,
+} from "../../actions/episodeActions";
 
 function EpisodeDetails(props) {
   let idList = [];
@@ -56,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchEpisodeCharacters: (url) => dispatch(fetchEpisodeCharacters(url)),
+    fetchEpisodeCharacters: (url) => dispatch(fetchEpisodeCharactersBegin(url)),
   };
 };
 

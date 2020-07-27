@@ -1,4 +1,5 @@
 import {
+  FETCH_CHARACTER_EPISODES_BEGIN,
   FETCH_CHARACTER_EPISODES_FAILURE,
   FETCH_CHARACTER_EPISODES_SUCCESS,
   FETCH_CHARACTERS_BEGIN,
@@ -7,9 +8,10 @@ import {
   SET_CHARACTERS_CURRENT_PAGE,
 } from "../constants/actionTypes";
 
-export const fetchCharactersBegin = () => {
+export const fetchCharactersBegin = (url) => {
   return {
     type: FETCH_CHARACTERS_BEGIN,
+    payload: url,
   };
 };
 
@@ -24,6 +26,13 @@ export const fetchCharactersFailure = (error) => {
   return {
     type: FETCH_CHARACTERS_FAILURE,
     payload: error,
+  };
+};
+
+export const fetchCharacterEpisodesBegin = (url) => {
+  return {
+    type: FETCH_CHARACTER_EPISODES_BEGIN,
+    payload: url,
   };
 };
 
@@ -48,33 +57,33 @@ export const setCurrentPage = (currentPage) => {
   };
 };
 
-export const fetchCharacterEpisodes = (url) => {
-  return (dispatch) => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response;
-      })
-      .then((response) => response.json())
-      .then((episodes) => dispatch(fetchCharacterEpisodesSuccess(episodes)))
-      .catch((error) => dispatch(fetchCharacterEpisodesFailure(error.message)));
-  };
-};
-
-export const fetchCharacters = (url) => {
-  return (dispatch) => {
-    dispatch(fetchCharactersBegin());
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response;
-      })
-      .then((response) => response.json())
-      .then((characters) => dispatch(fetchCharactersSuccess(characters)))
-      .catch((error) => dispatch(fetchCharactersFailure(error.message)));
-  };
-};
+// export const fetchCharacterEpisodes = (url) => {
+//   return (dispatch) => {
+//     fetch(url)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.statusText);
+//         }
+//         return response;
+//       })
+//       .then((response) => response.json())
+//       .then((episodes) => dispatch(fetchCharacterEpisodesSuccess(episodes)))
+//       .catch((error) => dispatch(fetchCharacterEpisodesFailure(error.message)));
+//   };
+// };
+//
+// export const fetchCharacters = (url) => {
+//   return (dispatch) => {
+//     dispatch(fetchCharactersBegin());
+//     fetch(url)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.statusText);
+//         }
+//         return response;
+//       })
+//       .then((response) => response.json())
+//       .then((characters) => dispatch(fetchCharactersSuccess(characters)))
+//       .catch((error) => dispatch(fetchCharactersFailure(error.message)));
+//   };
+// };
