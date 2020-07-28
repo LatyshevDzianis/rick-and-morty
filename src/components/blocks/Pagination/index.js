@@ -1,7 +1,8 @@
 import React from "react";
-import "./Breadcrumbs.css";
 
-export default function Breadcrumbs({ pages, currentPage, onPageChange }) {
+import "./Pagination.css";
+
+export default function Pagination({ pages, currentPage, onPageChange }) {
   const breadcrumbs = [];
 
   for (let i = 1; i <= pages; i++) {

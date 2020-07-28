@@ -56,34 +56,3 @@ export const setCurrentPage = (currentPage) => {
     payload: currentPage,
   };
 };
-
-// export const fetchEpisodeCharacters = (url) => {
-//   return (dispatch) => {
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((episodes) => dispatch(fetchEpisodeCharactersSuccess(episodes)))
-//       .catch((error) => dispatch(fetchEpisodeCharactersFailure(error)));
-//   };
-// };
-//
-// export const fetchEpisodes = (url) => {
-//   return (dispatch) => {
-//     dispatch(fetchEpisodesBegin());
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((episodes) => dispatch(fetchEpisodesSuccess(episodes)))
-//       .catch((error) => dispatch(fetchEpisodesFailure(error)));
-//   };
-// };

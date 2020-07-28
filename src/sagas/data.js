@@ -1,4 +1,5 @@
 import { takeEvery, put, call, select } from "redux-saga/effects";
+
 import {
   FETCH_CHARACTER_EPISODES_BEGIN,
   FETCH_CHARACTERS_BEGIN,

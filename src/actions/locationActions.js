@@ -56,36 +56,3 @@ export const setCurrentPage = (currentPage) => {
     payload: currentPage,
   };
 };
-
-// export const fetchLocationCharacters = (url) => {
-//   return (dispatch) => {
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((characters) =>
-//         dispatch(fetchLocationCharactersSuccess(characters))
-//       )
-//       .catch((error) => dispatch(fetchLocationCharactersFailure(error)));
-//   };
-// };
-//
-// export const fetchLocations = (url) => {
-//   return (dispatch) => {
-//     dispatch(fetchLocationsBegin());
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((locations) => dispatch(fetchLocationsSuccess(locations)))
-//       .catch((error) => dispatch(fetchLocationsFailure(error)));
-//   };
-// };

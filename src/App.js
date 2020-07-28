@@ -1,16 +1,18 @@
 import React from "react";
-import "./App.css";
-import Header from "./components/blocks/Header";
-import { Provider } from "react-redux";
-import { store } from "./store";
-import Characters from "./components/pages/Characters";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CharacterDetails from "./components/pages/CharacterDetails";
+import { Provider } from "react-redux";
+
+import Header from "./components/blocks/Header/index";
 import MainPage from "./components/pages/MainPage";
-import Episodes from "./components/pages/Episodes";
-import Locations from "./components/pages/Locations";
-import EpisodeDetails from "./components/pages/EpisodeDetails";
-import LocationDetails from "./components/pages/LocationDetails";
+import Characters from "./components/pages/Characters/index";
+import CharacterDetails from "./components/pages/Characters/CharacterDetails/index";
+import Episodes from "./components/pages/Episodes/index";
+import EpisodeDetails from "./components/pages/Episodes/EpisodeDetails/index";
+import Locations from "./components/pages/Locations/index";
+import LocationDetails from "./components/pages/Locations/LocationDetails/index";
+import { store } from "./store";
+
+import "./App.css";
 
 function App() {
   return (
