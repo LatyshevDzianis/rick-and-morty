@@ -1,26 +1,33 @@
 .Locations {
     width: 75%;
-    margin: 20px auto;
-}
-
-.Locations a {
-    text-decoration: none;
-}
-
-.LocationItem {
-    display: flex;
-    margin-bottom: 15px;
-    padding: 5px 15px;
-}
-
-.LocationItem:hover {
-    background-color: #fafd7c;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.LocationItem span {
+    margin: 80px auto;
     color: #24325fff;
-    font-size: 1.5em;
-    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+.Locations table {
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Locations table thead {
+    color: #fafd7c;
+    background-color: #24325fff;
+}
+
+.Locations table tr {
+    border: 1px solid black;
+}
+
+.Locations table td:first-child, th:first-child {
+    text-align: left;
+}
+
+.Locations table td {
+    text-align: center;
+}
+
+.Locations table th, td {
+    padding: 10px 20px;
 }

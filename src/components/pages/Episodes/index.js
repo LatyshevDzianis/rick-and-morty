@@ -27,25 +27,28 @@ function Episodes() {
 
   return (
     <div className="Episodes">
-      {episodes.map((item) => {
-        return (
-          <Link key={item.id} to={`/episodes/${item.id}`}>
-            <div className="EpisodeItem">
-              <span>
-                <b>Episode:</b> {item.episode}
-              </span>
-              <br />
-              <span>
-                <b>Name:</b> {item.name}
-              </span>
-              <br />
-              <span>
-                <b>Air date:</b> {item.air_date}
-              </span>
-            </div>
-          </Link>
-        );
-      })}
+      <table align="center">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Episode</th>
+            <th>Air date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {episodes.map((item) => {
+            return (
+              <tr key={item.id}>
+                <td>
+                  <Link to={`/episodes/${item.id}`}>{item.name}</Link>
+                </td>
+                <td>{item.episode}</td>
+                <td>{item.air_date}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       <Pagination
         pages={info.pages}
         currentPage={currentPage}

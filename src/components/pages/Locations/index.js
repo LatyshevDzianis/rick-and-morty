@@ -27,25 +27,47 @@ function Locations() {
 
   return (
     <div className="Locations">
-      {locations.map((item) => {
-        return (
-          <Link key={item.id} to={`/locations/${item.id}`}>
-            <div className="LocationItem">
-              <span>
-                <b>Name:</b> {item.name}
-              </span>
-              <br />
-              <span>
-                <b>Type:</b> {item.type}
-              </span>
-              <br />
-              <span>
-                <b>Dimension:</b> {item.dimension}
-              </span>
-            </div>
-          </Link>
-        );
-      })}
+      <table align="center">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Dimension</th>
+          </tr>
+        </thead>
+        <tbody>
+          {locations.map((item) => {
+            return (
+              <tr key={item.id}>
+                <td>
+                  <Link to={`/locations/${item.id}`}>{item.name}</Link>
+                </td>
+                <td>{item.type}</td>
+                <td>{item.dimension}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      {/*{locations.map((item) => {*/}
+      {/*  return (*/}
+      {/*    <Link key={item.id} to={`/locations/${item.id}`}>*/}
+      {/*      <div className="LocationItem">*/}
+      {/*        <span>*/}
+      {/*          <b>Name:</b> {item.name}*/}
+      {/*        </span>*/}
+      {/*        <br />*/}
+      {/*        <span>*/}
+      {/*          <b>Type:</b> {item.type}*/}
+      {/*        </span>*/}
+      {/*        <br />*/}
+      {/*        <span>*/}
+      {/*          <b>Dimension:</b> {item.dimension}*/}
+      {/*        </span>*/}
+      {/*      </div>*/}
+      {/*    </Link>*/}
+      {/*  );*/}
+      {/*})}*/}
       <Pagination
         pages={info.pages}
         currentPage={currentPage}
