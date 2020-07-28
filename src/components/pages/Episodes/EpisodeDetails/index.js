@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { fetchEpisodeCharactersBegin } from "../../../../actions/episodeActions";
 import { Loader } from "../../../blocks/Loader";
 
 import "./EpisodeDetails.css";
+import CharactersCards from "../../../blocks/CharactersCards";
 
 function EpisodeDetails({ match }) {
   const episodes = useSelector((state) => state.episodes.episodes);
@@ -41,16 +43,12 @@ function EpisodeDetails({ match }) {
       <p>
         <b>Characters: </b>
         <br />
-        {loading ? (
-          <Loader />
-        ) : Array.isArray(episodeCharacters) ? (
-          episodeCharacters.map((character) => (
-            <span key={character.id}>{character.name}, </span>
-          ))
-        ) : (
-          <span key={episodeCharacters.id}>{episodeCharacters.name}</span>
-        )}
       </p>
+      {loading ? (
+        <Loader />
+      ) : (
+        <CharactersCards characters={episodeCharacters} />
+      )}
     </div>
   );
 }
