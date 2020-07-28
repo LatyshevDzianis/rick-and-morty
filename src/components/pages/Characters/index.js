@@ -27,20 +27,33 @@ function Characters() {
 
   return (
     <div className="Characters">
-      <ul>
+      <div className="CharactersContainer">
         {characters.map((character) => {
           return (
-            <li key={character.id}>
+            <div className="CharacterCard">
               <Link to={`/characters/${character.id}`}>
-                <div>
-                  <img src={character.image} alt="..." />
-                  <span>{character.name}</span>
-                </div>
+                <img src={character.image} alt="..." />
+                <br />
+                <span>{character.name}</span>
               </Link>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
+      {/*<ul>*/}
+      {/*  {characters.map((character) => {*/}
+      {/*    return (*/}
+      {/*      <li key={character.id}>*/}
+      {/*        <Link to={`/characters/${character.id}`}>*/}
+      {/*          <div>*/}
+      {/*            <img src={character.image} alt="..." />*/}
+      {/*            <span>{character.name}</span>*/}
+      {/*          </div>*/}
+      {/*        </Link>*/}
+      {/*      </li>*/}
+      {/*    );*/}
+      {/*  })}*/}
+      {/*</ul>*/}
       <Pagination
         pages={info.pages}
         currentPage={currentPage}

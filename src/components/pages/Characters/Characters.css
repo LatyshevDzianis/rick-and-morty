@@ -1,31 +1,18 @@
-.Characters img {
-    max-height: 50px;
-}
-
-.Characters ul {
-    list-style: none;
-    width: 75%;
+.CharactersContainer {
     margin: 80px auto;
+    width: 75%;
 }
 
-.Characters a {
-    text-decoration: none;
+.CharactersContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 2vh;
 }
 
-.Characters li {
-    padding: 5px 10px;
-    margin-bottom: 15px;
-    transition: background-color .3s;
+.CharactersContainer .CharacterCard {
+    text-align: center;
 }
 
-.Characters li:hover {
-    background-color: #fafd7c;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.Characters a span {
-    font-size: 1.5em;
-    color: #24325fff;
-    margin-left: 20px;
+.CharactersContainer img {
+    max-width: 200px;
 }
