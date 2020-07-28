@@ -11,7 +11,6 @@ import {
 const initialState = {
   characters: [],
   characterEpisodes: [],
-  currentUrl: "",
   info: {},
   currentPage: 1,
   loading: false,
@@ -23,7 +22,6 @@ export default function characterReducer(state = initialState, action) {
     case FETCH_CHARACTERS_BEGIN:
       return {
         ...state,
-        currentUrl: action.payload,
         loading: true,
         error: null,
       };
@@ -44,7 +42,6 @@ export default function characterReducer(state = initialState, action) {
     case FETCH_CHARACTER_EPISODES_BEGIN:
       return {
         ...state,
-        currentUrl: action.payload,
         loading: true,
       };
     case FETCH_CHARACTER_EPISODES_SUCCESS:

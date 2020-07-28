@@ -17,20 +17,12 @@ function Locations() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchLocationsBegin(
-        `https://rickandmortyapi.com/api/location?page=${currentPage}`
-      )
-    );
+    dispatch(fetchLocationsBegin(currentPage));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(
-      fetchLocationsBegin(
-        `https://rickandmortyapi.com/api/location?page=${pageNumber}`
-      )
-    );
+    dispatch(fetchLocationsBegin(pageNumber));
   };
 
   return (

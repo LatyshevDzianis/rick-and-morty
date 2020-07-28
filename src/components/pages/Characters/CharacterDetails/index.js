@@ -25,11 +25,7 @@ function CharacterDetails({ match }) {
   );
 
   useEffect(() => {
-    dispatch(
-      fetchCharacterEpisodesBegin(
-        `https://rickandmortyapi.com/api/episode/${idList}`
-      )
-    );
+    dispatch(fetchCharacterEpisodesBegin(idList));
   }, []);
 
   return (

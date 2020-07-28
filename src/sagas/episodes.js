@@ -1,4 +1,4 @@
-import { takeEvery, put, call, select } from "redux-saga/effects";
+import { takeEvery, put, call } from "redux-saga/effects";
 
 import {
   FETCH_EPISODE_CHARACTERS_BEGIN,
@@ -11,28 +11,28 @@ import {
   fetchEpisodesSuccess,
 } from "../actions/episodeActions";
 import fetchData from "./fetchData";
-
-const getEpisodesUrl = (state) => state.episodes.currentUrl;
+import { EPISODE_CHARACTERS_URL, EPISODES_URL } from "../constants/api";
 
 export function* episodesWatcher() {
   yield takeEvery(FETCH_EPISODES_BEGIN, episodesWorker);
   yield takeEvery(FETCH_EPISODE_CHARACTERS_BEGIN, episodeCharactersWorker);
 }
 
-function* episodesWorker() {
+function* episodesWorker(action) {
   try {
-    let url = yield select(getEpisodesUrl);
-    const payload = yield call(fetchData, url);
+    const payload = yield call(fetchData, EPISODES_URL.concat(action.payload));
     yield put(fetchEpisodesSuccess(payload));
   } catch (e) {
     yield put(fetchEpisodesFailure(e));
   }
 }
 
-function* episodeCharactersWorker() {
+function* episodeCharactersWorker(action) {
   try {
-    let url = yield select(getEpisodesUrl);
-    const payload = yield call(fetchData, url);
+    const payload = yield call(
+      fetchData,
+      EPISODE_CHARACTERS_URL.concat(action.payload.join(","))
+    );
     yield put(fetchEpisodeCharactersSuccess(payload));
   } catch (e) {
     yield put(fetchEpisodeCharactersFailure("Error with loading data("));

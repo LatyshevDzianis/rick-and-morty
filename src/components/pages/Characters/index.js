@@ -10,27 +10,19 @@ import Pagination from "../../blocks/Pagination/index";
 
 import "./Characters.css";
 
-function Characters(props) {
+function Characters() {
   const dispatch = useDispatch();
   const characters = useSelector((state) => state.characters.characters);
   const info = useSelector((state) => state.characters.info);
   const currentPage = useSelector((state) => state.characters.currentPage);
 
   useEffect(() => {
-    dispatch(
-      fetchCharactersBegin(
-        `https://rickandmortyapi.com/api/character?page=${props.currentPage}`
-      )
-    );
+    dispatch(fetchCharactersBegin(currentPage));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(
-      fetchCharactersBegin(
-        `https://rickandmortyapi.com/api/character?page=${pageNumber}`
-      )
-    );
+    dispatch(fetchCharactersBegin(pageNumber));
   };
 
   return (

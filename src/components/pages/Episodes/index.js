@@ -17,20 +17,12 @@ function Episodes() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchEpisodesBegin(
-        `https://rickandmortyapi.com/api/episode?page=${currentPage}`
-      )
-    );
+    dispatch(fetchEpisodesBegin(currentPage));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(
-      fetchEpisodesBegin(
-        `https://rickandmortyapi.com/api/episode?page=${pageNumber}`
-      )
-    );
+    dispatch(fetchEpisodesBegin(pageNumber));
   };
 
   return (

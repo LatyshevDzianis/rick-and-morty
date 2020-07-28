@@ -11,7 +11,6 @@ import {
 const initialState = {
   locations: [],
   locationCharacters: [],
-  currentUrl: "",
   loading: false,
   error: null,
   info: {},
@@ -23,7 +22,6 @@ export default function locationsReducer(state = initialState, action) {
     case FETCH_LOCATIONS_BEGIN:
       return {
         ...state,
-        currentUrl: action.payload,
         loading: true,
         error: null,
       };
@@ -45,7 +43,6 @@ export default function locationsReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        currentUrl: action.payload,
       };
     case FETCH_LOCATION_CHARACTERS_SUCCESS:
       return {

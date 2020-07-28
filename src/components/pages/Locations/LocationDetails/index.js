@@ -24,11 +24,7 @@ function LocationDetails({ match }) {
   );
 
   useEffect(() => {
-    dispatch(
-      fetchLocationCharactersBegin(
-        `https://rickandmortyapi.com/api/character/${idList}`
-      )
-    );
+    dispatch(fetchLocationCharactersBegin(idList));
   }, []);
 
   return (
