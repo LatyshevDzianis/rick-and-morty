@@ -17,7 +17,6 @@ const initialState = {
   info: {},
   currentPage: 1,
   loading: false,
-  episodesLoading: false,
   error: null,
 };
 
