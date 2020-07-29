@@ -1,12 +1,28 @@
 import {
+  FETCH_LOCATION_BEGIN,
   FETCH_LOCATION_CHARACTERS_BEGIN,
   FETCH_LOCATION_CHARACTERS_FAILURE,
   FETCH_LOCATION_CHARACTERS_SUCCESS,
+  FETCH_LOCATION_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
   FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
   SET_LOCATIONS_CURRENT_PAGE,
 } from "../constants/actionTypes";
+
+export const fetchLocationBegin = (url) => {
+  return {
+    type: FETCH_LOCATION_BEGIN,
+    payload: url,
+  };
+};
+
+export const fetchLocationSuccess = (location) => {
+  return {
+    type: FETCH_LOCATION_SUCCESS,
+    payload: location,
+  };
+};
 
 export const fetchLocationsBegin = (url) => {
   return {

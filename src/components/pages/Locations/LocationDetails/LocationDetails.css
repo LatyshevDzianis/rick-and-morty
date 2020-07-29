@@ -1,9 +1,21 @@
 .LocationDetails {
     width: 75%;
     margin: 80px auto;
+    color: #24325fff;
+    font-size: 25px;
+}
+
+.LocationDetails .Info {
+    margin-bottom: 15px;
 }
 
 .LocationDetails p {
     font-size: 1.5em;
     color: #24325fff;
+}
+
+.LocationDetails ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

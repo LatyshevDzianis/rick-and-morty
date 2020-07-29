@@ -1,7 +1,9 @@
 import {
+  FETCH_EPISODE_BEGIN,
   FETCH_EPISODE_CHARACTERS_BEGIN,
   FETCH_EPISODE_CHARACTERS_FAILURE,
   FETCH_EPISODE_CHARACTERS_SUCCESS,
+  FETCH_EPISODE_SUCCESS,
   FETCH_EPISODES_BEGIN,
   FETCH_EPISODES_FAILURE,
   FETCH_EPISODES_SUCCESS,
@@ -10,8 +12,10 @@ import {
 
 const initialState = {
   episodes: [],
+  selectedEpisode: {},
   episodeCharacters: [],
   loading: false,
+  loadingCharacters: false,
   error: null,
   info: {},
   currentPage: 1,
@@ -19,6 +23,17 @@ const initialState = {
 
 export default function episodeReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_EPISODE_BEGIN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_EPISODE_SUCCESS:
+      return {
+        ...state,
+        selectedEpisode: action.payload,
+        loading: false,
+      };
     case FETCH_EPISODES_BEGIN:
       return {
         ...state,
@@ -42,19 +57,19 @@ export default function episodeReducer(state = initialState, action) {
     case FETCH_EPISODE_CHARACTERS_BEGIN:
       return {
         ...state,
-        loading: true,
+        loadingCharacters: true,
       };
     case FETCH_EPISODE_CHARACTERS_SUCCESS:
       return {
         ...state,
         episodeCharacters: action.payload,
-        loading: false,
+        loadingCharacters: false,
         error: null,
       };
     case FETCH_EPISODE_CHARACTERS_FAILURE:
       return {
         ...state,
-        loading: false,
+        loadingCharacters: false,
         error: action.payload,
       };
     case SET_EPISODES_CURRENT_PAGE:

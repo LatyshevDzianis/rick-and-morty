@@ -9,11 +9,13 @@ import {
 import Pagination from "../../blocks/Pagination/index";
 
 import "./Episodes.css";
+import { Loader } from "../../blocks/Loader";
 
 function Episodes() {
   const episodes = useSelector((state) => state.episodes.episodes);
   const info = useSelector((state) => state.episodes.info);
   const currentPage = useSelector((state) => state.episodes.currentPage);
+  const loading = useSelector((state) => state.episodes.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,28 +29,32 @@ function Episodes() {
 
   return (
     <div className="Episodes">
-      <table align="center">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Episode</th>
-            <th>Air date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {episodes.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>
-                  <Link to={`/episodes/${item.id}`}>{item.name}</Link>
-                </td>
-                <td>{item.episode}</td>
-                <td>{item.air_date}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {loading ? (
+        <Loader />
+      ) : (
+        <table align="center">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Episode</th>
+              <th>Air date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {episodes.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <td>
+                    <Link to={`/episodes/${item.id}`}>{item.name}</Link>
+                  </td>
+                  <td>{item.episode}</td>
+                  <td>{item.air_date}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
       <Pagination
         pages={info.pages}
         currentPage={currentPage}

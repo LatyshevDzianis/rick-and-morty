@@ -9,10 +9,12 @@ import Pagination from "../../blocks/Pagination/index";
 import CharactersCards from "../../blocks/CharactersCards";
 
 import "./Characters.css";
+import { Loader } from "../../blocks/Loader";
 
 function Characters() {
   const dispatch = useDispatch();
   const characters = useSelector((state) => state.characters.characters);
+  const loading = useSelector((state) => state.characters.loading);
   const info = useSelector((state) => state.characters.info);
   const currentPage = useSelector((state) => state.characters.currentPage);
 
@@ -26,14 +28,16 @@ function Characters() {
   };
 
   return (
-    <div className="Characters">
-      <CharactersCards characters={characters} />
+    <React.Fragment>
+      <div className="Characters">
+        {loading ? <Loader /> : <CharactersCards characters={characters} />}
+      </div>
       <Pagination
         pages={info.pages}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />
-    </div>
+    </React.Fragment>
   );
 }
 

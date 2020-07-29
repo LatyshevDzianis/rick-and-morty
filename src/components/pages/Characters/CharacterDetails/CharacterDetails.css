@@ -1,7 +1,16 @@
 .CharacterDetails {
-    display: flex;
     width: 75%;
     margin: 80px auto;
+    color: #24325fff;
+    font-size: 25px;
+}
+
+.CharacterDetails .CharacterEpisodes {
+   margin-top: 15px;
+}
+
+.CharacterDetails .Row {
+    display: flex;
 }
 
 .CharacterDetails img {
@@ -10,6 +19,4 @@
 
 .CharacterDetails ul {
     list-style: none;
-    font-size: 25px;
-    color: #24325fff;
 }

@@ -1,6 +1,7 @@
 import { takeEvery, put, call } from "redux-saga/effects";
 
 import {
+  FETCH_LOCATION_BEGIN,
   FETCH_LOCATION_CHARACTERS_BEGIN,
   FETCH_LOCATIONS_BEGIN,
 } from "../constants/actionTypes";
@@ -9,13 +10,24 @@ import {
   fetchLocationCharactersSuccess,
   fetchLocationsFailure,
   fetchLocationsSuccess,
+  fetchLocationSuccess,
 } from "../actions/locationActions";
 import fetchData from "./fetchData";
-import { LOCATION_CHARACTERS_URL, LOCATIONS_URL } from "../constants/api";
+import {
+  LOCATION_CHARACTERS_URL,
+  LOCATION_URL,
+  LOCATIONS_URL,
+} from "../constants/api";
 
 export function* locationsWatcher() {
   yield takeEvery(FETCH_LOCATIONS_BEGIN, locationsWorker);
   yield takeEvery(FETCH_LOCATION_CHARACTERS_BEGIN, locationCharactersWorker);
+  yield takeEvery(FETCH_LOCATION_BEGIN, locationWorker);
+}
+
+function* locationWorker(action) {
+  const payload = yield call(fetchData, LOCATION_URL.concat(action.payload));
+  yield put(fetchLocationSuccess(payload));
 }
 
 function* locationsWorker(action) {

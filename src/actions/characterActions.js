@@ -1,12 +1,28 @@
 import {
+  FETCH_CHARACTER_BEGIN,
   FETCH_CHARACTER_EPISODES_BEGIN,
   FETCH_CHARACTER_EPISODES_FAILURE,
   FETCH_CHARACTER_EPISODES_SUCCESS,
+  FETCH_CHARACTER_SUCCESS,
   FETCH_CHARACTERS_BEGIN,
   FETCH_CHARACTERS_FAILURE,
   FETCH_CHARACTERS_SUCCESS,
   SET_CHARACTERS_CURRENT_PAGE,
 } from "../constants/actionTypes";
+
+export const fetchCharacterBegin = (url) => {
+  return {
+    type: FETCH_CHARACTER_BEGIN,
+    payload: url,
+  };
+};
+
+export const fetchCharacterSuccess = (character) => {
+  return {
+    type: FETCH_CHARACTER_SUCCESS,
+    payload: character,
+  };
+};
 
 export const fetchCharactersBegin = (url) => {
   return {

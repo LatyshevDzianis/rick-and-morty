@@ -1,25 +1,4 @@
 .Characters {
     width: 75%;
-    margin: 80px auto;
+    margin: 80px auto 20px auto;
 }
-
-/*
-.CharactersContainer {
-    margin: 80px auto;
-    width: 75%;
-}
-
-.CharactersContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    grid-gap: 2vh;
-}
-
-.CharactersContainer .CharacterCard {
-    text-align: center;
-}
-
-.CharactersContainer img {
-    max-width: 150px;
-}
-*/
