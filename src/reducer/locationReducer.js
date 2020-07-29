@@ -11,7 +11,7 @@ import {
 } from "../constants/actionTypes";
 
 const initialState = {
-  locations: [],
+  items: [],
   selectedLocation: {},
   locationCharacters: [],
   loading: false,
@@ -43,7 +43,7 @@ export default function locationsReducer(state = initialState, action) {
     case FETCH_LOCATIONS_SUCCESS:
       return {
         ...state,
-        locations: action.payload.results,
+        items: action.payload.results,
         info: action.payload.info,
         loading: false,
         error: null,

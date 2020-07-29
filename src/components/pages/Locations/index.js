@@ -6,25 +6,26 @@ import {
   fetchLocationsBegin,
   setCurrentPage,
 } from "../../../actions/locationActions";
-import Pagination from "../../blocks/Pagination/index";
-
-import "./Locations.css";
+import Pagination from "../../blocks/Pagination";
 import { Loader } from "../../blocks/Loader";
+import { LOCATIONS_PAGE } from "../../../constants/routes";
+
+import "./styles.css";
 
 function Locations() {
-  const locations = useSelector((state) => state.locations.locations);
+  const locations = useSelector((state) => state.locations.items);
   const info = useSelector((state) => state.locations.info);
   const currentPage = useSelector((state) => state.locations.currentPage);
   const loading = useSelector((state) => state.locations.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchLocationsBegin(currentPage));
+    dispatch(fetchLocationsBegin({ page: currentPage }));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(fetchLocationsBegin(pageNumber));
+    dispatch(fetchLocationsBegin({ page: pageNumber }));
   };
 
   return (
@@ -45,7 +46,7 @@ function Locations() {
               return (
                 <tr key={item.id}>
                   <td>
-                    <Link to={`/locations/${item.id}`}>{item.name}</Link>
+                    <Link to={LOCATIONS_PAGE + item.id}>{item.name}</Link>
                   </td>
                   <td>{item.type}</td>
                   <td>{item.dimension}</td>

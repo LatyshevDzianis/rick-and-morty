@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-import {
-  fetchCharacterBegin,
-  fetchCharacterEpisodesBegin,
-} from "../../../../actions/characterActions";
-import { Loader } from "../../../blocks/Loader/index";
+import { fetchCharacterBegin } from "../../../../actions/characterActions";
+import { Loader } from "../../../blocks/Loader";
+import { EPISODES_PAGE, LOCATIONS_PAGE } from "../../../../constants/routes";
 
-import "./CharacterDetails.css";
+import "./styles.css";
 
-function CharacterDetails({ match }) {
-  const characterId = match.params.id;
-  let idList = [];
-
+function CharacterDetails() {
   const dispatch = useDispatch();
   const character = useSelector((state) => state.characters.selectedCharacter);
   const characterEpisodes = useSelector(
@@ -23,19 +18,22 @@ function CharacterDetails({ match }) {
   const loadingEpisodes = useSelector(
     (state) => state.characters.loadingEpisodes
   );
+  const { id } = useParams();
+
+  const originUrl = character.origin
+    ? LOCATIONS_PAGE +
+      character.origin.url.substring(character.origin.url.lastIndexOf("/") + 1)
+    : LOCATIONS_PAGE;
+  const locationUrl = character.location
+    ? LOCATIONS_PAGE +
+      character.location.url.substring(
+        character.location.url.lastIndexOf("/") + 1
+      )
+    : LOCATIONS_PAGE;
 
   useEffect(() => {
-    dispatch(fetchCharacterBegin(characterId));
+    dispatch(fetchCharacterBegin(id));
   }, []);
-
-  useEffect(() => {
-    character.episode &&
-      character.episode.forEach((item) =>
-        idList.push(item.substring(item.lastIndexOf("/") + 1))
-      );
-
-    idList.length && dispatch(fetchCharacterEpisodesBegin(idList));
-  }, [character]);
 
   return (
     <div className="CharacterDetails">
@@ -62,12 +60,16 @@ function CharacterDetails({ match }) {
               {character.gender}
             </li>
             <li>
-              <b>Origin: </b>
-              {character.origin && character.origin.name}
+              <b>Origin:</b>
+              <Link to={originUrl}>
+                {character.origin && character.origin.name}
+              </Link>
             </li>
             <li>
               <b>Location: </b>
-              {character.location && character.location.name}
+              <Link to={locationUrl}>
+                {character.location && character.location.name}
+              </Link>
             </li>
           </ul>
         </div>
@@ -80,12 +82,12 @@ function CharacterDetails({ match }) {
           <Loader />
         ) : Array.isArray(characterEpisodes) ? (
           characterEpisodes.map((episode) => (
-            <Link key={episode.id} to={`/episodes/${episode.id}`}>
+            <Link key={episode.id} to={EPISODES_PAGE + episode.id}>
               <span>{episode.name}, </span>
             </Link>
           ))
         ) : (
-          <Link to={`/episodes/${characterEpisodes.id}`}>
+          <Link to={EPISODES_PAGE + characterEpisodes.id}>
             <span key={characterEpisodes.id}>{characterEpisodes.name}</span>
           </Link>
         )}

@@ -5,15 +5,15 @@ import {
   fetchCharactersBegin,
   setCurrentPage,
 } from "../../../actions/characterActions";
-import Pagination from "../../blocks/Pagination/index";
+import Pagination from "../../blocks/Pagination";
 import CharactersCards from "../../blocks/CharactersCards";
-
-import "./Characters.css";
 import { Loader } from "../../blocks/Loader";
+
+import "./styles.css";
 
 function Characters() {
   const dispatch = useDispatch();
-  const characters = useSelector((state) => state.characters.characters);
+  const characters = useSelector((state) => state.characters.items);
   const loading = useSelector((state) => state.characters.loading);
   const info = useSelector((state) => state.characters.info);
   const currentPage = useSelector((state) => state.characters.currentPage);
@@ -24,7 +24,7 @@ function Characters() {
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(fetchCharactersBegin(pageNumber));
+    dispatch(fetchCharactersBegin({ page: pageNumber } /*pageNumber*/));
   };
 
   return (

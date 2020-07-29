@@ -6,25 +6,26 @@ import {
   fetchEpisodesBegin,
   setCurrentPage,
 } from "../../../actions/episodeActions";
-import Pagination from "../../blocks/Pagination/index";
-
-import "./Episodes.css";
+import Pagination from "../../blocks/Pagination";
 import { Loader } from "../../blocks/Loader";
+import { EPISODES_PAGE } from "../../../constants/routes";
+
+import "./styles.css";
 
 function Episodes() {
-  const episodes = useSelector((state) => state.episodes.episodes);
+  const episodes = useSelector((state) => state.episodes.items);
   const info = useSelector((state) => state.episodes.info);
   const currentPage = useSelector((state) => state.episodes.currentPage);
   const loading = useSelector((state) => state.episodes.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchEpisodesBegin(currentPage));
+    dispatch(fetchEpisodesBegin({ page: currentPage } /*currentPage*/));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(fetchEpisodesBegin(pageNumber));
+    dispatch(fetchEpisodesBegin({ page: pageNumber } /*pageNumber*/));
   };
 
   return (
@@ -45,7 +46,7 @@ function Episodes() {
               return (
                 <tr key={item.id}>
                   <td>
-                    <Link to={`/episodes/${item.id}`}>{item.name}</Link>
+                    <Link to={EPISODES_PAGE + item.id}>{item.name}</Link>
                   </td>
                   <td>{item.episode}</td>
                   <td>{item.air_date}</td>

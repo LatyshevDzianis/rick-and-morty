@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Pagination.css";
+import "./styles.css";
 
 export default function Pagination({ pages, currentPage, onPageChange }) {
   const breadcrumbs = [];

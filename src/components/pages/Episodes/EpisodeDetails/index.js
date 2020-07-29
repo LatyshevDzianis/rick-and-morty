@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import {
-  fetchEpisodeBegin,
-  fetchEpisodeCharactersBegin,
-} from "../../../../actions/episodeActions";
+import { fetchEpisodeBegin } from "../../../../actions/episodeActions";
 import { Loader } from "../../../blocks/Loader";
-
-import "./EpisodeDetails.css";
 import CharactersCards from "../../../blocks/CharactersCards";
 
-function EpisodeDetails({ match }) {
-  const episodeId = match.params.id;
-  let idList = [];
+import "./styles.css";
 
+function EpisodeDetails() {
   const dispatch = useDispatch();
   const episode = useSelector((state) => state.episodes.selectedEpisode);
   const loading = useSelector((state) => state.episodes.loading);
@@ -23,19 +18,11 @@ function EpisodeDetails({ match }) {
   const episodeCharacters = useSelector(
     (state) => state.episodes.episodeCharacters
   );
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchEpisodeBegin(episodeId));
+    dispatch(fetchEpisodeBegin(id));
   }, []);
-
-  useEffect(() => {
-    episode.characters &&
-      episode.characters.forEach((item) =>
-        idList.push(item.substring(item.lastIndexOf("/") + 1))
-      );
-
-    idList.length > 0 && dispatch(fetchEpisodeCharactersBegin(idList));
-  }, [episode]);
 
   return (
     <div className="EpisodeDetails">

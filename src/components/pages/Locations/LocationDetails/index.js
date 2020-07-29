@@ -1,42 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import {
-  fetchLocationBegin,
-  fetchLocationCharactersBegin,
-} from "../../../../actions/locationActions";
+import { fetchLocationBegin } from "../../../../actions/locationActions";
+import CharactersCards from "../../../blocks/CharactersCards";
 import { Loader } from "../../../blocks/Loader";
 
-import "./LocationDetails.css";
-import CharactersCards from "../../../blocks/CharactersCards";
+import "./styles.css";
 
-function LocationDetails({ match }) {
-  const locationId = match.params.id;
-  let idList = [];
-
+function LocationDetails() {
   const dispatch = useDispatch();
   const location = useSelector((state) => state.locations.selectedLocation);
   const loading = useSelector((state) => state.locations.loading);
   const loadingCharacters = useSelector(
     (state) => state.locations.loadingCharacters
   );
-
   const locationCharacters = useSelector(
     (state) => state.locations.locationCharacters
   );
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchLocationBegin(locationId));
+    dispatch(fetchLocationBegin(id));
   }, []);
-
-  useEffect(() => {
-    location.residents &&
-      location.residents.forEach((item) =>
-        idList.push(item.substring(item.lastIndexOf("/") + 1))
-      );
-
-    idList.length > 0 && dispatch(fetchLocationCharactersBegin(idList));
-  }, [location]);
 
   return (
     <div className="LocationDetails">

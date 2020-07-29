@@ -11,7 +11,7 @@ import {
 } from "../constants/actionTypes";
 
 const initialState = {
-  characters: [],
+  items: [],
   selectedCharacter: {},
   characterEpisodes: [],
   info: {},
@@ -42,7 +42,7 @@ export default function characterReducer(state = initialState, action) {
     case FETCH_CHARACTERS_SUCCESS:
       return {
         ...state,
-        characters: action.payload.results,
+        items: action.payload.results,
         info: action.payload.info,
         loading: false,
         error: null,

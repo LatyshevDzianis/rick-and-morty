@@ -2,25 +2,31 @@ import React from "react";
 
 import { NavLink, Link } from "react-router-dom";
 
-import "./Header.css";
+import "./styles.css";
+import {
+  CHARACTERS_PAGE,
+  EPISODES_PAGE,
+  LOCATIONS_PAGE,
+  MAIN_ROUTE,
+} from "../../../constants/routes";
 
 export default function Header() {
   return (
     <div className="Header">
       <div className="Logo">
-        <Link to="/">
+        <Link to={MAIN_ROUTE}>
           <span>Rick And Morty</span>
         </Link>
       </div>
       <ul>
         <li>
-          <NavLink to="/episodes">Episodes</NavLink>
+          <NavLink to={EPISODES_PAGE}>Episodes</NavLink>
         </li>
         <li>
-          <NavLink to="/locations">Locations</NavLink>
+          <NavLink to={LOCATIONS_PAGE}>Locations</NavLink>
         </li>
         <li>
-          <NavLink to="/characters">Characters</NavLink>
+          <NavLink to={CHARACTERS_PAGE}>Characters</NavLink>
         </li>
       </ul>
     </div>
