@@ -20,12 +20,12 @@ function Episodes() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchEpisodesBegin({ page: currentPage } /*currentPage*/));
+    dispatch(fetchEpisodesBegin({ page: currentPage }));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(fetchEpisodesBegin({ page: pageNumber } /*pageNumber*/));
+    dispatch(fetchEpisodesBegin({ page: pageNumber }));
   };
 
   return (

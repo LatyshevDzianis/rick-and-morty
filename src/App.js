@@ -20,8 +20,6 @@ import {
   MAIN_ROUTE,
 } from "./constants/routes";
 
-import "./App.css";
-
 function App() {
   return (
     <BrowserRouter>

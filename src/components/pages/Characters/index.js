@@ -19,12 +19,12 @@ function Characters() {
   const currentPage = useSelector((state) => state.characters.currentPage);
 
   useEffect(() => {
-    dispatch(fetchCharactersBegin({ page: currentPage } /*currentPage*/));
+    dispatch(fetchCharactersBegin({ page: currentPage }));
   }, []);
 
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
-    dispatch(fetchCharactersBegin({ page: pageNumber } /*pageNumber*/));
+    dispatch(fetchCharactersBegin({ page: pageNumber }));
   };
 
   return (
