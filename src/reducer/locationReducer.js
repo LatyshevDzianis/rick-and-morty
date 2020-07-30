@@ -1,8 +1,5 @@
 import {
   FETCH_LOCATION_BEGIN,
-  FETCH_LOCATION_CHARACTERS_BEGIN,
-  FETCH_LOCATION_CHARACTERS_FAILURE,
-  FETCH_LOCATION_CHARACTERS_SUCCESS,
   FETCH_LOCATION_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
   FETCH_LOCATIONS_FAILURE,
@@ -13,9 +10,7 @@ import {
 const initialState = {
   items: [],
   selectedLocation: {},
-  locationCharacters: [],
   loading: false,
-  loadingCharacters: false,
   error: null,
   info: {},
   currentPage: 1,
@@ -26,12 +21,12 @@ export default function locationsReducer(state = initialState, action) {
     case FETCH_LOCATION_BEGIN:
       return {
         ...state,
-        loadingCharacters: true,
+        loading: true,
       };
     case FETCH_LOCATION_SUCCESS:
       return {
         ...state,
-        loadingCharacters: false,
+        loading: false,
         selectedLocation: action.payload,
       };
     case FETCH_LOCATIONS_BEGIN:
@@ -49,24 +44,6 @@ export default function locationsReducer(state = initialState, action) {
         error: null,
       };
     case FETCH_LOCATIONS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case FETCH_LOCATION_CHARACTERS_BEGIN:
-      return {
-        ...state,
-        loading: true,
-      };
-    case FETCH_LOCATION_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        locationCharacters: action.payload,
-        error: null,
-      };
-    case FETCH_LOCATION_CHARACTERS_FAILURE:
       return {
         ...state,
         loading: false,

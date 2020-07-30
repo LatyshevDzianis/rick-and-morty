@@ -1,8 +1,5 @@
 import {
   FETCH_LOCATION_BEGIN,
-  FETCH_LOCATION_CHARACTERS_BEGIN,
-  FETCH_LOCATION_CHARACTERS_FAILURE,
-  FETCH_LOCATION_CHARACTERS_SUCCESS,
   FETCH_LOCATION_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
   FETCH_LOCATIONS_FAILURE,
@@ -17,10 +14,10 @@ export const fetchLocationBegin = (url) => {
   };
 };
 
-export const fetchLocationSuccess = (location) => {
+export const fetchLocationSuccess = (data) => {
   return {
     type: FETCH_LOCATION_SUCCESS,
-    payload: location,
+    payload: data,
   };
 };
 
@@ -41,27 +38,6 @@ export const fetchLocationsSuccess = (locations) => {
 export const fetchLocationsFailure = (error) => {
   return {
     type: FETCH_LOCATIONS_FAILURE,
-    payload: error,
-  };
-};
-
-export const fetchLocationCharactersBegin = (url) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_BEGIN,
-    payload: url,
-  };
-};
-
-export const fetchLocationCharactersSuccess = (characters) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_SUCCESS,
-    payload: characters,
-  };
-};
-
-export const fetchLocationCharactersFailure = (error) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_FAILURE,
     payload: error,
   };
 };

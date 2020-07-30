@@ -12,11 +12,8 @@ function LocationDetails() {
   const dispatch = useDispatch();
   const location = useSelector((state) => state.locations.selectedLocation);
   const loading = useSelector((state) => state.locations.loading);
-  const loadingCharacters = useSelector(
-    (state) => state.locations.loadingCharacters
-  );
   const locationCharacters = useSelector(
-    (state) => state.locations.locationCharacters
+    (state) => state.locations.selectedLocation.locationCharacters
   );
   const { id } = useParams();
 
@@ -47,12 +44,10 @@ function LocationDetails() {
               <b>Characters: </b>
             </li>
           </ul>
+          <CharactersCards
+            characters={locationCharacters ? locationCharacters : []}
+          />
         </div>
-      )}
-      {loadingCharacters ? (
-        <Loader />
-      ) : (
-        <CharactersCards characters={locationCharacters} />
       )}
     </div>
   );

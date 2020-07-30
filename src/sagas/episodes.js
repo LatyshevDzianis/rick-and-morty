@@ -6,8 +6,6 @@ import {
   FETCH_EPISODES_BEGIN,
 } from "../constants/actionTypes";
 import {
-  fetchEpisodeCharactersBegin,
-  fetchEpisodeCharactersSuccess,
   fetchEpisodesFailure,
   fetchEpisodesSuccess,
   fetchEpisodeSuccess,
@@ -21,10 +19,9 @@ export function* episodesWatcher() {
 }
 
 function* episodeWorker(action) {
-  const payload = yield call(fetchData, `${EPISODES_URL}/${action.payload}`);
-  yield put(fetchEpisodeCharactersBegin());
+  const episode = yield call(fetchData, `${EPISODES_URL}/${action.payload}`);
 
-  const characterIds = payload.characters.map((item) =>
+  const characterIds = episode.characters.map((item) =>
     item.substring(item.lastIndexOf("/") + 1)
   );
 
@@ -33,8 +30,7 @@ function* episodeWorker(action) {
     `${CHARACTERS_URL}/${characterIds}`
   );
 
-  yield put(fetchEpisodeSuccess(payload));
-  yield put(fetchEpisodeCharactersSuccess(episodeCharacters));
+  yield put(fetchEpisodeSuccess({ ...episode, episodeCharacters }));
 }
 
 function* episodesWorker(action) {

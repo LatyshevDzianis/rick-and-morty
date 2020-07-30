@@ -6,8 +6,6 @@ import {
   FETCH_LOCATIONS_BEGIN,
 } from "../constants/actionTypes";
 import {
-  fetchLocationCharactersBegin,
-  fetchLocationCharactersSuccess,
   fetchLocationsFailure,
   fetchLocationsSuccess,
   fetchLocationSuccess,
@@ -21,25 +19,18 @@ export function* locationsWatcher() {
 }
 
 function* locationWorker(action) {
-  const payload = yield call(fetchData, `${LOCATIONS_URL}/${action.payload}`);
-  yield put(fetchLocationCharactersBegin());
+  const location = yield call(fetchData, `${LOCATIONS_URL}/${action.payload}`);
 
-  const characterIds = payload.residents.map((item) =>
+  const characterIds = location.residents.map((item) =>
     item.substring(item.lastIndexOf("/") + 1)
   );
 
-  yield put(fetchLocationSuccess(payload));
+  const locationCharacters = yield call(
+    fetchData,
+    `${CHARACTERS_URL}/${characterIds}`
+  );
 
-  if (characterIds.length > 0) {
-    const locationCharacters = yield call(
-      fetchData,
-      `${CHARACTERS_URL}/${characterIds}`
-    );
-
-    yield put(fetchLocationCharactersSuccess(locationCharacters));
-  } else {
-    yield put(fetchLocationCharactersSuccess([]));
-  }
+  yield put(fetchLocationSuccess({ ...location, locationCharacters }));
 }
 
 function* locationsWorker(action) {

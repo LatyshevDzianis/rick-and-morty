@@ -1,8 +1,5 @@
 import {
   FETCH_EPISODE_BEGIN,
-  FETCH_EPISODE_CHARACTERS_BEGIN,
-  FETCH_EPISODE_CHARACTERS_FAILURE,
-  FETCH_EPISODE_CHARACTERS_SUCCESS,
   FETCH_EPISODE_SUCCESS,
   FETCH_EPISODES_BEGIN,
   FETCH_EPISODES_FAILURE,
@@ -17,10 +14,10 @@ export const fetchEpisodeBegin = (url) => {
   };
 };
 
-export const fetchEpisodeSuccess = (episode) => {
+export const fetchEpisodeSuccess = (data) => {
   return {
     type: FETCH_EPISODE_SUCCESS,
-    payload: episode,
+    payload: data,
   };
 };
 
@@ -42,27 +39,6 @@ export const fetchEpisodesSuccess = (episodes) => {
   return {
     type: FETCH_EPISODES_SUCCESS,
     payload: episodes,
-  };
-};
-
-export const fetchEpisodeCharactersBegin = (url) => {
-  return {
-    type: FETCH_EPISODE_CHARACTERS_BEGIN,
-    payload: url,
-  };
-};
-
-export const fetchEpisodeCharactersFailure = (error) => {
-  return {
-    type: FETCH_EPISODE_CHARACTERS_FAILURE,
-    payload: error,
-  };
-};
-
-export const fetchEpisodeCharactersSuccess = (characters) => {
-  return {
-    type: FETCH_EPISODE_CHARACTERS_SUCCESS,
-    payload: characters,
   };
 };
 

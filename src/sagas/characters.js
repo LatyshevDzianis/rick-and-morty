@@ -7,8 +7,6 @@ import {
 } from "../constants/actionTypes";
 import fetchData from "./fetchData";
 import {
-  fetchCharacterEpisodesBegin,
-  fetchCharacterEpisodesSuccess,
   fetchCharactersFailure,
   fetchCharactersSuccess,
   fetchCharacterSuccess,
@@ -21,10 +19,12 @@ export function* charactersWatcher() {
 }
 
 function* characterWorker(action) {
-  const payload = yield call(fetchData, `${CHARACTERS_URL}/${action.payload}`);
-  yield put(fetchCharacterEpisodesBegin());
+  const character = yield call(
+    fetchData,
+    `${CHARACTERS_URL}/${action.payload}`
+  );
 
-  const episodeIds = payload.episode.map((item) =>
+  const episodeIds = character.episode.map((item) =>
     item.substring(item.lastIndexOf("/") + 1)
   );
 
@@ -33,8 +33,7 @@ function* characterWorker(action) {
     `${EPISODES_URL}/${episodeIds}`
   );
 
-  yield put(fetchCharacterSuccess(payload));
-  yield put(fetchCharacterEpisodesSuccess(characterEpisodes));
+  yield put(fetchCharacterSuccess({ ...character, characterEpisodes }));
 }
 
 function* charactersWorker(action) {

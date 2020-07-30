@@ -12,11 +12,8 @@ function EpisodeDetails() {
   const dispatch = useDispatch();
   const episode = useSelector((state) => state.episodes.selectedEpisode);
   const loading = useSelector((state) => state.episodes.loading);
-  const loadingCharacters = useSelector(
-    (state) => state.episodes.loadingCharacters
-  );
   const episodeCharacters = useSelector(
-    (state) => state.episodes.episodeCharacters
+    (state) => state.episodes.selectedEpisode.episodeCharacters
   );
   const { id } = useParams();
 
@@ -47,12 +44,10 @@ function EpisodeDetails() {
               <b>Characters: </b>
             </li>
           </ul>
+          <CharactersCards
+            characters={episodeCharacters ? episodeCharacters : []}
+          />
         </div>
-      )}
-      {loadingCharacters ? (
-        <Loader />
-      ) : (
-        <CharactersCards characters={episodeCharacters} />
       )}
     </div>
   );

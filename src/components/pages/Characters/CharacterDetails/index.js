@@ -12,12 +12,9 @@ function CharacterDetails() {
   const dispatch = useDispatch();
   const character = useSelector((state) => state.characters.selectedCharacter);
   const characterEpisodes = useSelector(
-    (state) => state.characters.characterEpisodes
+    (state) => state.characters.selectedCharacter.characterEpisodes
   );
   const loading = useSelector((state) => state.characters.loading);
-  const loadingEpisodes = useSelector(
-    (state) => state.characters.loadingEpisodes
-  );
   const { id } = useParams();
 
   const originUrl = character.origin
@@ -40,58 +37,60 @@ function CharacterDetails() {
       {loading ? (
         <Loader />
       ) : (
-        <div className="Row">
-          <img alt="..." src={character.image} />
-          <ul>
-            <li>
-              <b>Name: </b>
-              {character.name}
-            </li>
-            <li>
-              <b>Status: </b>
-              {character.status}
-            </li>
-            <li>
-              <b>Species: </b>
-              {character.species}
-            </li>
-            <li>
-              <b>Gender: </b>
-              {character.gender}
-            </li>
-            <li>
-              <b>Origin:</b>
-              <Link to={originUrl}>
-                {character.origin && character.origin.name}
+        <>
+          <div className="Row">
+            <img alt="..." src={character.image} />
+            <ul>
+              <li>
+                <b>Name: </b>
+                {character.name}
+              </li>
+              <li>
+                <b>Status: </b>
+                {character.status}
+              </li>
+              <li>
+                <b>Species: </b>
+                {character.species}
+              </li>
+              <li>
+                <b>Gender: </b>
+                {character.gender}
+              </li>
+              <li>
+                <b>Origin:</b>
+                <Link to={originUrl}>
+                  {character.origin && character.origin.name}
+                </Link>
+              </li>
+              <li>
+                <b>Location: </b>
+                <Link to={locationUrl}>
+                  {character.location && character.location.name}
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div className="CharacterEpisodes">
+            <span>
+              <b>Episodes: </b>
+            </span>
+            {!characterEpisodes ? (
+              <Loader />
+            ) : Array.isArray(characterEpisodes) ? (
+              characterEpisodes.map((episode) => (
+                <Link key={episode.id} to={EPISODES_PAGE + episode.id}>
+                  <span>{episode.name}, </span>
+                </Link>
+              ))
+            ) : (
+              <Link to={EPISODES_PAGE + characterEpisodes.id}>
+                <span key={characterEpisodes.id}>{characterEpisodes.name}</span>
               </Link>
-            </li>
-            <li>
-              <b>Location: </b>
-              <Link to={locationUrl}>
-                {character.location && character.location.name}
-              </Link>
-            </li>
-          </ul>
-        </div>
+            )}
+          </div>
+        </>
       )}
-      <div className="CharacterEpisodes">
-        <span>
-          <b>Episodes: </b>
-        </span>
-        {loadingEpisodes ? (
-          <Loader />
-        ) : Array.isArray(characterEpisodes) ? (
-          characterEpisodes.map((episode) => (
-            <Link key={episode.id} to={EPISODES_PAGE + episode.id}>
-              <span>{episode.name}, </span>
-            </Link>
-          ))
-        ) : (
-          <Link to={EPISODES_PAGE + characterEpisodes.id}>
-            <span key={characterEpisodes.id}>{characterEpisodes.name}</span>
-          </Link>
-        )}
-      </div>
     </div>
   );
 }
