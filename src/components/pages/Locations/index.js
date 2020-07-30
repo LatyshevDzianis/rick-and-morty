@@ -23,6 +23,8 @@ function Locations() {
     dispatch(fetchLocationsBegin({ page: currentPage }));
   }, []);
 
+  const generateLocationLink = (id) => `${LOCATIONS_PAGE}${id}`;
+
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
     dispatch(fetchLocationsBegin({ page: pageNumber }));
@@ -46,7 +48,7 @@ function Locations() {
               return (
                 <tr key={item.id}>
                   <td>
-                    <Link to={LOCATIONS_PAGE + item.id}>{item.name}</Link>
+                    <Link to={generateLocationLink(item.id)}>{item.name}</Link>
                   </td>
                   <td>{item.type}</td>
                   <td>{item.dimension}</td>

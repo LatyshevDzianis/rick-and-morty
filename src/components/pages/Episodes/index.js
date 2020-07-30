@@ -23,6 +23,8 @@ function Episodes() {
     dispatch(fetchEpisodesBegin({ page: currentPage }));
   }, []);
 
+  const generateEpisodeLink = (id) => `${EPISODES_PAGE}${id}`;
+
   const onPageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
     dispatch(fetchEpisodesBegin({ page: pageNumber }));
@@ -46,7 +48,7 @@ function Episodes() {
               return (
                 <tr key={item.id}>
                   <td>
-                    <Link to={EPISODES_PAGE + item.id}>{item.name}</Link>
+                    <Link to={generateEpisodeLink(item.id)}>{item.name}</Link>
                   </td>
                   <td>{item.episode}</td>
                   <td>{item.air_date}</td>

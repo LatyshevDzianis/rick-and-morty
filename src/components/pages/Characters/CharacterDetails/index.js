@@ -32,6 +32,8 @@ function CharacterDetails() {
     dispatch(fetchCharacterBegin(id));
   }, []);
 
+  const generateEpisodeUrl = (id) => `${EPISODES_PAGE}${id}`;
+
   return (
     <div className="CharacterDetails">
       {loading ? (
@@ -79,12 +81,12 @@ function CharacterDetails() {
               <Loader />
             ) : Array.isArray(characterEpisodes) ? (
               characterEpisodes.map((episode) => (
-                <Link key={episode.id} to={EPISODES_PAGE + episode.id}>
+                <Link key={episode.id} to={generateEpisodeUrl(episode.id)}>
                   <span>{episode.name}, </span>
                 </Link>
               ))
             ) : (
-              <Link to={EPISODES_PAGE + characterEpisodes.id}>
+              <Link to={generateEpisodeUrl(characterEpisodes.id)}>
                 <span key={characterEpisodes.id}>{characterEpisodes.name}</span>
               </Link>
             )}
