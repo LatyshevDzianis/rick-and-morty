@@ -1,0 +1,20 @@
+.EpisodeDetails {
+    width: 75%;
+    margin: 80px auto;
+    color: #24325fff;
+    font-size: 25px;
+}
+
+.EpisodeDetails ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.EpisodeDetails .Info {
+    margin-bottom: 15px;
+}
+
+.EpisodeDetails p {
+    color: #24325fff;
+}

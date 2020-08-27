@@ -1,0 +1,33 @@
+.Episodes {
+    width: 75%;
+    margin: 80px auto;
+    color: #24325fff;
+    font-size: 1.2em;
+}
+
+.Episodes table {
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Episodes table thead {
+    color: #fafd7c;
+    background-color: #24325fff;
+}
+
+.Episodes table tr {
+    border: 1px solid black;
+}
+
+.Episodes table td:first-child, th:first-child {
+    text-align: left;
+}
+
+.Episodes table td {
+    text-align: center;
+}
+
+.Episodes table th, td {
+    padding: 10px 20px;
+}

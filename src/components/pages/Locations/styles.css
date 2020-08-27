@@ -1,0 +1,33 @@
+.Locations {
+    width: 75%;
+    margin: 80px auto;
+    color: #24325fff;
+    font-size: 1.2em;
+}
+
+.Locations table {
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Locations table thead {
+    color: #fafd7c;
+    background-color: #24325fff;
+}
+
+.Locations table tr {
+    border: 1px solid black;
+}
+
+.Locations table td:first-child, th:first-child {
+    text-align: left;
+}
+
+.Locations table td {
+    text-align: center;
+}
+
+.Locations table th, td {
+    padding: 10px 20px;
+}

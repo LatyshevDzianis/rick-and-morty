@@ -1,7 +1,6 @@
 import {
-  FETCH_EPISODE_CHARACTERS_BEGIN,
-  FETCH_EPISODE_CHARACTERS_FAILURE,
-  FETCH_EPISODE_CHARACTERS_SUCCESS,
+  FETCH_EPISODE_BEGIN,
+  FETCH_EPISODE_SUCCESS,
   FETCH_EPISODES_BEGIN,
   FETCH_EPISODES_FAILURE,
   FETCH_EPISODES_SUCCESS,
@@ -9,9 +8,8 @@ import {
 } from "../constants/actionTypes";
 
 const initialState = {
-  episodes: [],
-  episodeCharacters: [],
-  currentUrl: "",
+  items: [],
+  selectedEpisode: {},
   loading: false,
   error: null,
   info: {},
@@ -20,41 +18,32 @@ const initialState = {
 
 export default function episodeReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_EPISODE_BEGIN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_EPISODE_SUCCESS:
+      return {
+        ...state,
+        selectedEpisode: action.payload,
+        loading: false,
+      };
     case FETCH_EPISODES_BEGIN:
       return {
         ...state,
-        currentUrl: action.payload,
         loading: true,
         error: null,
       };
     case FETCH_EPISODES_SUCCESS:
       return {
         ...state,
-        episodes: action.payload.results,
+        items: action.payload.results,
         info: action.payload.info,
         loading: false,
         error: null,
       };
     case FETCH_EPISODES_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case FETCH_EPISODE_CHARACTERS_BEGIN:
-      return {
-        ...state,
-        currentUrl: action.payload,
-        loading: true,
-      };
-    case FETCH_EPISODE_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        episodeCharacters: action.payload,
-        loading: false,
-        error: null,
-      };
-    case FETCH_EPISODE_CHARACTERS_FAILURE:
       return {
         ...state,
         loading: false,

@@ -1,8 +1,6 @@
 import {
-  FETCH_EPISODES_BEGIN,
-  FETCH_LOCATION_CHARACTERS_BEGIN,
-  FETCH_LOCATION_CHARACTERS_FAILURE,
-  FETCH_LOCATION_CHARACTERS_SUCCESS,
+  FETCH_LOCATION_BEGIN,
+  FETCH_LOCATION_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
   FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
@@ -10,9 +8,8 @@ import {
 } from "../constants/actionTypes";
 
 const initialState = {
-  locations: [],
-  locationCharacters: [],
-  currentUrl: "",
+  items: [],
+  selectedLocation: {},
   loading: false,
   error: null,
   info: {},
@@ -21,41 +18,32 @@ const initialState = {
 
 export default function locationsReducer(state = initialState, action) {
   switch (action.type) {
+    case FETCH_LOCATION_BEGIN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_LOCATION_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        selectedLocation: action.payload,
+      };
     case FETCH_LOCATIONS_BEGIN:
       return {
         ...state,
-        currentUrl: action.payload,
         loading: true,
         error: null,
       };
     case FETCH_LOCATIONS_SUCCESS:
       return {
         ...state,
-        locations: action.payload.results,
+        items: action.payload.results,
         info: action.payload.info,
         loading: false,
         error: null,
       };
     case FETCH_LOCATIONS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case FETCH_LOCATION_CHARACTERS_BEGIN:
-      return {
-        ...state,
-        loading: true,
-        currentUrl: action.payload,
-      };
-    case FETCH_LOCATION_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        locationCharacters: action.payload,
-        error: null,
-      };
-    case FETCH_LOCATION_CHARACTERS_FAILURE:
       return {
         ...state,
         loading: false,

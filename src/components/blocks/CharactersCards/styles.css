@@ -1,0 +1,13 @@
+.CharactersCardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    grid-gap: 2vh;
+}
+
+.CharactersCardsContainer .CharacterCard {
+    text-align: center;
+}
+
+.CharactersCardsContainer img {
+    max-width: 150px;
+}

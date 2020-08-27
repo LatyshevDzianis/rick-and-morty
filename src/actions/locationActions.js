@@ -1,12 +1,25 @@
 import {
-  FETCH_LOCATION_CHARACTERS_BEGIN,
-  FETCH_LOCATION_CHARACTERS_FAILURE,
-  FETCH_LOCATION_CHARACTERS_SUCCESS,
+  FETCH_LOCATION_BEGIN,
+  FETCH_LOCATION_SUCCESS,
   FETCH_LOCATIONS_BEGIN,
   FETCH_LOCATIONS_FAILURE,
   FETCH_LOCATIONS_SUCCESS,
   SET_LOCATIONS_CURRENT_PAGE,
 } from "../constants/actionTypes";
+
+export const fetchLocationBegin = (url) => {
+  return {
+    type: FETCH_LOCATION_BEGIN,
+    payload: url,
+  };
+};
+
+export const fetchLocationSuccess = (data) => {
+  return {
+    type: FETCH_LOCATION_SUCCESS,
+    payload: data,
+  };
+};
 
 export const fetchLocationsBegin = (url) => {
   return {
@@ -29,63 +42,9 @@ export const fetchLocationsFailure = (error) => {
   };
 };
 
-export const fetchLocationCharactersBegin = (url) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_BEGIN,
-    payload: url,
-  };
-};
-
-export const fetchLocationCharactersSuccess = (characters) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_SUCCESS,
-    payload: characters,
-  };
-};
-
-export const fetchLocationCharactersFailure = (error) => {
-  return {
-    type: FETCH_LOCATION_CHARACTERS_FAILURE,
-    payload: error,
-  };
-};
-
 export const setCurrentPage = (currentPage) => {
   return {
     type: SET_LOCATIONS_CURRENT_PAGE,
     payload: currentPage,
   };
 };
-
-// export const fetchLocationCharacters = (url) => {
-//   return (dispatch) => {
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((characters) =>
-//         dispatch(fetchLocationCharactersSuccess(characters))
-//       )
-//       .catch((error) => dispatch(fetchLocationCharactersFailure(error)));
-//   };
-// };
-//
-// export const fetchLocations = (url) => {
-//   return (dispatch) => {
-//     dispatch(fetchLocationsBegin());
-//     fetch(url)
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response;
-//       })
-//       .then((response) => response.json())
-//       .then((locations) => dispatch(fetchLocationsSuccess(locations)))
-//       .catch((error) => dispatch(fetchLocationsFailure(error)));
-//   };
-// };
